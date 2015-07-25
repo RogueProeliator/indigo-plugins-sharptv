@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<Actions>
+	<Action id="toggleTVPower" deviceFilter="self">
+		<Name>Toggle TV Power</Name>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="setTVPower" deviceFilter="self">
+		<Name>Set TV Power</Name>
+		<ConfigUI>
+			<Field type="menu" id="powerState">
+				<Label>TV Power:</Label>
+				<List>
+					<Option value="0">Off</Option>
+					<Option value="1">On</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="sep01" />
+	<Action id="setVolumeLevel" deviceFilter="self">
+		<Name>Set Volume Level</Name>
+		<ConfigUI>
+			<Field type="textfield" id="volumeLevel">
+				<Label>Volume Level:</Label>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="setMuteStatus" deviceFilter="self">
+		<Name>Set Mute State</Name>
+		<ConfigUI>
+			<Field type="menu" id="muteState">
+				<Label>Mute:</Label>
+				<List>
+					<Option value="0">Toggle</Option>
+					<Option value="1">On</Option>
+					<Option value="2">Off</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="setClosedCaptioning" deviceFilter="self">
+		<Name>Set Closed Captioning</Name>
+		<ConfigUI>
+			<Field type="menu" id="ccState">
+				<Label>Closed Captioning:</Label>
+				<List>
+					<Option value="0">Toggle</Option>
+					<Option value="1">On</Option>
+					<Option value="2">Off</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="sep02" />
+	<Action id="selectInput" deviceFilter="self">
+		<Name>Select TV Input</Name>
+		<ConfigUI>
+			<Field type="menu" id="tvInput">
+				<Label>Input:</Label>
+				<List class="self" filter="" method="getConfigDialogMenu" />
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="tuneToAnalogChannel" deviceFilter="self">
+		<Name>Tune to Analog Channel</Name>
+		<ConfigUI>
+			<Field type="textfield" id="channelNumber">
+				<Label>Channel (1-135):</Label>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="addDigitToChannelSelector" deviceFilter="self">
+		<Name>Add a digit to the channel selector</Name>
+		<CallbackMethod>executeAction</CallbackMethod>
+		<ConfigUI>
+			<Field type="label" id="instructions" fontSize="small">
+				<Label>Adds a digit to the channel selector to aid in creating control page keypads with which you can change the channel.</Label>
+			</Field>
+			<Field type="menu" id="digitToAdd">
+				<Label>Digit:</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+					<Option value="5">5</Option>
+					<Option value="6">6</Option>
+					<Option value="7">7</Option>
+					<Option value="8">8</Option>
+					<Option value="9">9</Option>
+					<Option value=".">.</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="remoteDigitFromChannelSelector" deviceFilter="self">
+		<Name>Remove the last digit from channel selector</Name>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="clearChannelSelector" deviceFilter="self">
+		<Name>Clear the channel selector</Name>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="tuneToChannelSelector" deviceFilter="self">
+		<Name>Tune the TV to the channel selector's value</Name>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="sep03" />
+	<Action id="changeAVMode" deviceFilter="self">
+		<Name>Set Picture Mode</Name>
+		<ConfigUI>
+			<Field type="menu" id="avMode">
+				<Label>Picture Mode:</Label>
+				<List>
+					<Option value="100">Auto</Option>
+					<Option value="6">Dynamic</Option>
+					<Option value="5">Dynamic (Fixed)</Option>
+					<Option value="3">Game</Option>
+					<Option value="16">Game (3D)</Option>
+					<Option value="2">Movie</Option>
+					<Option value="15">Movie (3D)</Option>
+					<Option value="7">PC</Option>
+					<Option value="1">Standard</Option>
+					<Option value="14">Standard (3D)</Option>
+					<Option value="0">Toggle</Option>
+					<Option value="4">User</Option>
+					<Option value="8">xvColor</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="changeViewMode" deviceFilter="self">
+		<Name>Set Aspect Correction Mode</Name>
+		<ConfigUI>
+			<Field type="menu" id="viewMode">
+				<Label>Aspect Correction:</Label>
+				<List>
+					<Option value="10">Auto for USB/DLNA</Option>
+					<Option value="8">Dot-by-Dot</Option>
+					<Option value="9">Full Screen</Option>
+					<Option value="5">Normal PC Input</Option>
+					<Option value="11">Original for USB/DLNA</Option>
+					<Option value="2">S. Stretch</Option>
+					<Option value="1">Side Bar</Option>
+					<Option value="4">Stretch</Option>
+					<Option value="7">Stretch PC Input</Option>
+					<Option value="0">Toggle</Option>
+					<Option value="3">Zoom</Option>
+					<Option value="6">Zoom PC Input</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="setSurroundSoundMode" deviceFilter="self">
+		<Name>Set Surround Sound Mode</Name>
+		<ConfigUI>
+			<Field type="menu" id="surroundSoundMode">
+				<Label>Surround Sound:</Label>
+				<List>
+					<Option value="1">Normal</Option>
+					<Option value="2">Off</Option>
+					<Option value="0">Toggle</Option>
+					<Option value="3">3D Hall</Option>
+					<Option value="4">3D Movie</Option>
+					<Option value="5">3D Standard</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="setSleepTimer" deviceFilter="self">
+		<Name>Set Sleep Timer</Name>
+		<ConfigUI>
+			<Field type="menu" id="sleepTimerSetting">
+				<Label>Sleep Timer:</Label>
+				<List>
+					<Option value="0">Off</Option>
+					<Option value="1">30 Minutes</Option>
+					<Option value="2">60 Minutes</Option>
+					<Option value="3">90 Minutes</Option>
+					<Option value="4">120 Minutes</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="sep04" />
+	<Action id="sendRemoteKey" deviceFilter="self">
+		<Name>Send Remote Key</Name>
+		<ConfigUI>
+			<Field type="menu" id="keyToSend">
+				<Label>Remote Key:</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+					<Option value="5">5</Option>
+					<Option value="6">6</Option>
+					<Option value="7">7</Option>
+					<Option value="8">8</Option>
+					<Option value="9">9</Option>
+					<Option value="10">.</Option>
+					<Option value="50">A (Red)</Option>
+					<Option value="49">Audio</Option>
+					<Option value="28">AV (Picture) Mode</Option>
+					<Option value="51">B (Green)</Option>
+					<Option value="19">Back</Option>
+					<Option value="52">C (Blue)</Option>
+					<Option value="27">CC</Option>
+					<Option value="35">Channel -</Option>
+					<Option value="34">Channel +</Option>
+					<Option value="53">D (Yellow)</Option>
+					<Option value="42">Direction Pad Down</Option>
+					<Option value="43">Direction Pad Left</Option>
+					<Option value="44">Direction Pad Right</Option>
+					<Option value="41">Direction Pad Up</Option>
+					<Option value="13">Display</Option>
+					<Option value="11">ENT</Option>
+					<Option value="40">Enter</Option>
+					<Option value="46">Exit</Option>
+					<Option value="17">Fast Forward</Option>
+					<Option value="55">Favorite App 1</Option>
+					<Option value="56">Favorite App 2</Option>
+					<Option value="57">Favorite App 3</Option>
+					<Option value="47">Favorite Channel</Option>
+					<Option value="30">Flashback</Option>
+					<Option value="54">Freeze</Option>
+					<Option value="21">Forward</Option>
+					<Option value="36">Input</Option>
+					<Option value="38">Menu</Option>
+					<Option value="31">Mute</Option>
+					<Option value="59">Netflix</Option>
+					<Option value="23">Option</Option>
+					<Option value="18">Pause</Option>
+					<Option value="16">Play</Option>
+					<Option value="12">Power</Option>
+					<Option value="14">Power (Source)</Option>
+					<Option value="22">Record</Option>
+					<Option value="45">Return</Option>
+					<Option value="15">Rewind</Option>
+					<Option value="24">Sleep</Option>
+					<Option value="39">SmartCentral</Option>
+					<Option value="20">Stop</Option>
+					<Option value="29">View Mode</Option>
+					<Option value="32">Volume -</Option>
+					<Option value="33">Volume +</Option>
+					<Option value="58">3D</Option>
+					<Option value="48">3D Surround</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+	<Action id="sep05" />
+	<Action id="changeTVPowerOnMessages" deviceFilter="self">
+		<Name>Set Power On Messages Enabled</Name>
+		<ConfigUI>
+			<Field type="menu" id="powerOnMessageState">
+				<Label>TV Power-On Messages:</Label>
+				<List>
+					<Option value="0">Disabled</Option>
+					<Option value="2">Enabled for IP Control</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+		<CallbackMethod>executeAction</CallbackMethod>
+	</Action>
+</Actions>

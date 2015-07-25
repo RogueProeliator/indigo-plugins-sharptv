@@ -1,0 +1,6 @@
+Before enable, connection refused
+Enable, go to System Options -> Internet Setup -> AQUOS Remote Control
+Enable Remote
+Default: No Username/Password
+Default Port: 10002
+\r begins and ends

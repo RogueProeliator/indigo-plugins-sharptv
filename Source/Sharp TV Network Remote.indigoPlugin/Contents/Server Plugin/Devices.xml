@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<Devices>
+
+	<!-- a two-way Sharp TV network-based remote control -->
+	<Device type="custom" id="sharpTvRemoteDevice">
+		<Name>Sharp TV Network Remote Control</Name>
+		<ConfigUI>	
+			<Field id="commOptionsTitle" type="label" fontColor="darkGray">
+				<Label>COMMUNICATION OPTIONS</Label>
+			</Field>
+			<Field id="instructionSeparator2" type="separator" />
+			<Field id="ipAddress" type="textfield">
+				<Label>Television IP Address:</Label>	
+			</Field>
+			<Field id="portNumber" type="textfield" defaultValue="10002">
+				<Label>Port:</Label>
+			</Field>
+			<Field id="updateInterval" type="textfield" defaultValue="90">
+				<Label>Status Update Interval (sec):</Label>
+			</Field>
+			<Field id="updateIntervalInstructions" type="label" fontSize="small" alignWithControl="true">
+				<Label>This interval, specified in seconds, determines how often the plugin attempts to read the status of all states of the television; this is used to update the plugin whenever a manual change has occurred (such as a change by the physical TV remote or buttons). Setting to 0 will disable status update polling.</Label>
+			</Field>
+			<Field type="label" id="securitySpacer" fontSize="small">
+				<Label></Label>
+			</Field>
+			<Field id="securityTitle" type="label" fontColor="darkGray">
+				<Label>SECURITY OPTIONS</Label>
+			</Field>
+			<Field id="securitySeparator2" type="separator" />
+			<Field id="requiresLogin" type="checkbox" defaultValue="false">
+				<Label>Login Required:</Label>
+				<Description>Check if you have setup a username/password for IP Control on your TV</Description>
+			</Field>
+			<Field id="tvUsername" type="textfield" enabledBindingId="requiresLogin">
+				<Label>Username:</Label>
+			</Field>
+			<Field id="tvPassword" type="textfield" enabledBindingId="requiresLogin">
+				<Label>Password:</Label>
+			</Field>
+			<Field type="label" id="sourceSeparator" fontSize="small">
+				<Label></Label>
+			</Field>
+			<Field id="sourceTitle" type="label" fontColor="darkGray">
+				<Label>SOURCE DEFINITIONS</Label>
+			</Field>
+			<Field id="sourceSeparator2" type="separator" />
+			<Field id="inputLabelInstructions" type="label" fontSize="small">
+				<Label>You may label the inputs so that actions and status can reference the input by label. Blank out a label if your TV does not support that particular input or you do not wish to see it in lists.</Label>
+			</Field>
+			<Field id="input0Label" type="textfield" defaultValue="TV Tuner">
+				<Label>Tuner Name:</Label>
+			</Field>
+			<Field id="input1Label" type="textfield" defaultValue="HDMI 1">
+				<Label>Input 1:</Label>
+			</Field>
+			<Field id="input2Label" type="textfield" defaultValue="HDMI 2">
+				<Label>Input 2:</Label>
+			</Field>
+			<Field id="input3Label" type="textfield" defaultValue="HDMI 3">
+				<Label>Input 3:</Label>
+			</Field>
+			<Field id="input4Label" type="textfield" defaultValue="HDMI 4">
+				<Label>Input 4:</Label>
+			</Field>
+			<Field id="input5Label" type="textfield" defaultValue="Component">
+				<Label>Input 5:</Label>
+			</Field>
+			<Field id="input6Label" type="textfield" defaultValue="Video 1">
+				<Label>Input 6:</Label>
+			</Field>
+			<Field id="input7Label" type="textfield" defaultValue="Video 2">
+				<Label>Input 7:</Label>
+			</Field>
+			<Field id="input8Label" type="textfield" defaultValue="PC">
+				<Label>Input 8:</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden='true' >
+				<Label/>
+			</Field>
+		</ConfigUI>
+		<UiDisplayStateId>connectionState</UiDisplayStateId>
+		<States>
+			<State id="avMode">
+				<ValueType>
+					<List>
+						<Option value="NERR">Unknown</Option>
+						<Option value="N100">Auto</Option>
+						<Option value="N5">Dynamic (Fixed)</Option>
+						<Option value="N6">Dynamic</Option>
+						<Option value="N300">Elite Pure</Option>
+						<Option value="N3">Game</Option>
+						<Option value="N16">Game (3D)</Option>
+						<Option value="N110">ISF DAY</Option>
+						<Option value="N111">ISF NIGHT</Option>
+						<Option value="N2">Movie</Option>
+						<Option value="N15">Movie (3D)</Option>
+						<Option value="N17">Movie (THX)</Option>
+						<Option value="N18">Movie (3D THX)</Option>
+						<Option value="N7">PC</Option>
+						<Option value="N1">Standard</Option>
+						<Option value="N14">Standard (3D)</Option>
+						<Option value="N4">User</Option>
+						<Option value="N8">xvColor</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>A/V Mode Changed</TriggerLabel>
+				<TriggerLabelPrefix>A/V Mode Changed to</TriggerLabelPrefix>
+				<ControlPageLabel>A/V Mode</ControlPageLabel>
+				<ControlPageLabelPrefix>A/V Mode is</ControlPageLabelPrefix>
+			</State>
+			<State id="channelSelector">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Channel Selector</TriggerLabel>
+				<ControlPageLabel>Channel Selector</ControlPageLabel>
+			</State>
+			<State id="closedCaptioning">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Closed Captioning Enabled</TriggerLabel>
+				<ControlPageLabel>Closed Captioning Enabled</ControlPageLabel>
+			</State>
+			<State id="connectionState">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Connection State</TriggerLabel>
+				<ControlPageLabel>Connection State</ControlPageLabel>
+			</State>
+			<State id="currentAnalogChannel">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Channel (Analog)</TriggerLabel>
+				<ControlPageLabel>Current Channel (Analog)</ControlPageLabel>
+			</State>
+			<State id="currentDigitalChannel">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Current Channel (Digital)</TriggerLabel>
+				<ControlPageLabel>Current Channel (Digital)</ControlPageLabel>
+			</State>
+			<State id="currentInputLabel">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Current Input Description</TriggerLabel>
+				<ControlPageLabel>Current Input Description</ControlPageLabel>
+			</State>
+			<State id="currentInputNumber">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Input Number</TriggerLabel>
+				<ControlPageLabel>Current Input Number</ControlPageLabel>
+			</State>
+			<State id="deviceModel">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Device Model</TriggerLabel>
+				<ControlPageLabel>Device Model</ControlPageLabel>
+			</State>
+			<State id="deviceName">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Device Name</TriggerLabel>
+				<ControlPageLabel>Device Name</ControlPageLabel>
+			</State>
+			<State id="isConnected">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Is Connected</TriggerLabel>
+				<ControlPageLabel>Is Connected</ControlPageLabel>
+			</State>
+			<State id="muted">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Is Muted</TriggerLabel>
+				<ControlPageLabel>Is Muted</ControlPageLabel>
+			</State>
+			<State id="powerState">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Is Powered On</TriggerLabel>
+				<ControlPageLabel>Is Powered On</ControlPageLabel>
+			</State>
+			<State id="powerOnCommandsEnabled">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Power On Commands Enabled</TriggerLabel>
+				<ControlPageLabel>Power On Commands Enabled</ControlPageLabel>
+			</State>
+			<State id="sleepTimerMinutes">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Sleep Timer Changed</TriggerLabel>
+				<ControlPageLabel>Sleep Timer (min)</ControlPageLabel>
+			</State>
+			<State id="surroundSoundMode">
+				<ValueType>
+					<List>
+						<Option value="NERR">Unknown</Option>
+						<Option value="N1">Normal</Option>
+						<Option value="N2">Off</Option>
+						<Option value="N4">3D Hall</Option>
+						<Option value="N5">3D Movie</Option>
+						<Option value="N6">3D Standard</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Surround Sound Mode Changed</TriggerLabel>
+				<TriggerLabelPrefix>Surround Sound Changed to</TriggerLabelPrefix>
+				<ControlPageLabel>Surround Sound Mode</ControlPageLabel>
+				<ControlPageLabelPrefix>Surround Sound Mode is</ControlPageLabelPrefix>
+			</State>
+			<State id="viewMode">
+				<ValueType>
+					<List>
+						<Option value="NERR">Unknown</Option>
+						<Option value="N10">Auto for USB/DLNA</Option>
+						<Option value="N8">Dot-by-Dot</Option>
+						<Option value="N9">Full Screen</Option>
+						<Option value="N5">Normal PC Input</Option>
+						<Option value="N11">Original for USB/DLNA</Option>
+						<Option value="N2">S. Stretch</Option>
+						<Option value="N1">Side Bar</Option>
+						<Option value="N4">Stretch</Option>
+						<Option value="N7">Stretch PC Input</Option>
+						<Option value="N3">Zoom</Option>
+						<Option value="N6">Zoom PC Input</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>View Mode Changed</TriggerLabel>
+				<TriggerLabelPrefix>View Mode Changed to</TriggerLabelPrefix>
+				<ControlPageLabel>View Mode</ControlPageLabel>
+				<ControlPageLabelPrefix>View Mode is</ControlPageLabelPrefix>
+			</State>
+			<State id="volume">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Volume</TriggerLabel>
+				<ControlPageLabel>Volume</ControlPageLabel>
+			</State>
+		</States>
+	</Device>
+	
+</Devices>

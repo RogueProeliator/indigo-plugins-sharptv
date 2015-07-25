@@ -1,0 +1,656 @@
+<RPFrameworkConfig>
+	<pluginConfig>
+		<guiConfiguration>
+			<pluginUpdateURL><![CDATA[http://forums.indigodomo.com/viewtopic.php?f=64&t=10981]]></pluginUpdateURL>
+		</guiConfiguration>
+		<deviceMapping>
+			<device indigoId="sharpTvRemoteDevice" className="SharpTvNetworkRemoteDevice" />
+		</deviceMapping>
+		<devices>
+			<device indigoId="sharpTvRemoteDevice">
+				<params>
+					<param indigoId="ipAddress" paramType="ParamTypeString" isRequired="True">
+						<validationExpression><![CDATA[^[a-z\d\. ]+$]]></validationExpression>
+						<invalidValueMessage><![CDATA[Please enter the IP of the television to control]]></invalidValueMessage>
+					</param>
+					<param indigoId="portNumber" paramType="ParamTypeInteger" isRequired="True">
+						<minValue>1</minValue>
+						<maxValue>99999</maxValue>
+						<defaultValue>10002</defaultValue>
+						<invalidValueMessage><![CDATA[Please enter a valid port number for the television to control]]></invalidValueMessage>
+					</param>
+					<param indigoId="updateInterval" paramType="ParamTypeInteger" isRequired="True">
+						<minValue>0</minValue>
+						<maxValue>999999</maxValue>
+						<defaultValue>90</defaultValue>
+						<invalidValueMessage><![CDATA[Please enter a valid time interval; set to 0 to turn off the status updater]]></invalidValueMessage>
+					</param>
+				</params>
+				<guiConfiguration>
+					<deviceAddressFormat><![CDATA[%ap:ipAddress%:%ap:portNumber%]]></deviceAddressFormat>
+					<telnetConnectionDeviceStateName>connectionState</telnetConnectionDeviceStateName>
+					<telnetConnectionDeviceStateBoolean>isConnected</telnetConnectionDeviceStateBoolean>
+					<telnetConnectionRequiresLoginProperty>requiresLogin</telnetConnectionRequiresLoginProperty>
+					<updateStatusPollerActionId>updateDeviceStatesFromTv</updateStatusPollerActionId>
+					<reconnectAttemptLimit>100</reconnectAttemptLimit>
+				</guiConfiguration>
+				<deviceResponses>
+					<response id="loginPrompt" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:response%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^Login:\s*]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>%dp:tvUsername%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="passwordPrompt" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:response%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^Password:\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>%dp:tvPassword%</updateValueFormat>
+							</effect>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>UPDATEDEVICESTATUS_FULL</updateParam>
+								<updateValueFormat></updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="volRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY((32)|(33))\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>VOLM??  </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="muteRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY31\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>MUTE?   </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="channelRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY((30)|(34)|(35)|(47))\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>DCCH??? </updateValueFormat>
+							</effect>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>DC2U??? </updateValueFormat>
+							</effect>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>DC2L??? </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="avModeRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY28\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>AVMD??? </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="viewModeRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY29\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>WIDE??  </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="sleepModeRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY24\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>OFTM?   </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="closedCaptionRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY27\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>CLCP?   </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="inputRemoteKeyPressed" respondToActionId="sendRemoteKey">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RCKY36\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
+								<updateParam>writeToTelnetConn</updateParam>
+								<updateValueFormat>ITGD?   </updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="powerStatusQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^POWR\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>powerState</updateParam>
+								<updateValueFormat>"%cp:response%" == "1"</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="powerOnMessagesEnabledStatusQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^RSPW\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>powerOnCommandsEnabled</updateParam>
+								<updateValueFormat>"%cp:response%" == "2"</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentInputQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^IAVD\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>currentInputNumber</updateParam>
+								<updateValueFormat>-1 if "%cp:response%" == "ERR" else int("%cp:response%")</updateValueFormat>
+							</effect>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>currentInputLabel</updateParam>
+								<updateValueFormat>"unknown" if "%cp:response%" == "ERR" else "%dp:input%cp:response%Label%"</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentAVModeQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^AVMD\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>avMode</updateParam>
+								<updateValueFormat>N%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentViewModeQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^WIDE\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>viewMode</updateParam>
+								<updateValueFormat>N%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentVolumeQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^VOLM\?\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>volume</updateParam>
+								<updateValueFormat>-1 if "%cp:response%" == "ERR" else int("%cp:response%")</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="isMutedQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^MUTE\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>muted</updateParam>
+								<updateValueFormat>"%cp:response%" == "1"</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentSurroundSoundModeQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^ACSU\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>surroundSoundMode</updateParam>
+								<updateValueFormat>N%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentSleepTimerQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^OFTM\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>sleepTimerMinutes</updateParam>
+								<updateValueFormat>%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="isCCEnabledQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^CLCP\?\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>closedCaptioning</updateParam>
+								<updateValueFormat>"%cp:response%" == "1"</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="deviceNameQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^TVNM1\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>deviceName</updateParam>
+								<updateValueFormat>%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="modelNumberQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^MNRD1\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="false">
+								<updateParam>deviceModel</updateParam>
+								<updateValueFormat>%cp:response%</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentAnalogChannelQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^DCCH\?{3}\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>currentAnalogChannel</updateParam>
+								<updateValueFormat>0 if "%cp:response%" == "ERR" else int("%cp:response%")</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentDigitalChannelUpperQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^DC2U\?{3}\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>currentDigitalChannel</updateParam>
+								<updateValueFormat>0 if "%cp:response%" == "ERR" else float("%cp:response%")</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+					<response id="currentDigitalChannelLowerQuery" respondToActionId="">
+						<criteriaFormatString><![CDATA[%cp:payload%]]></criteriaFormatString>
+						<matchExpression><![CDATA[^DC2L\?{3}\s*$]]></matchExpression>
+						<effects>
+							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
+								<updateParam>currentDigitalChannel</updateParam>
+								<updateValueFormat>0 if "%cp:response%" == "ERR" else math.floor(float("%ds:currentDigitalChannel%")) + float("0.%cp:response%")</updateValueFormat>
+							</effect>
+						</effects>
+					</response>
+				</deviceResponses>
+			</device>
+		</devices>
+		<actions>
+			<action indigoId="updateDeviceStatesFromTv">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[POWR?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[RSPW?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[IAVD?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[AVMD?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[WIDE?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[VOLM??  ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[MUTE?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[ACSU?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[OFTM?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[CLCP?   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[TVNM1   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[MNRD1   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[DCCH??? ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[DC2U??? ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[DC2L??? ]]></commandFormat>
+					</command>
+				</commands>
+			</action>
+			<action indigoId="toggleTVPower">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[eval:"POWR" + ("0" if "%ds:powerState%"=="True" else "1") + "   "]]></commandFormat>
+					</command>
+					<command>
+						<commandName>PAUSEPROCESSING</commandName>
+						<commandFormat>1.0</commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[POWR?   ]]></commandFormat>
+					</command>
+				</commands>
+			</action>
+			<action indigoId="setTVPower">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[POWR%ap:powerState%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>PAUSEPROCESSING</commandName>
+						<commandFormat>1.0</commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[POWR?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="powerState" paramType="ParamTypeInteger" isRequired="True">
+						<minValue>-1</minValue>
+						<invalidValueMessage><![CDATA[Please select a power setting for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="changeTVPowerOnMessages">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[RSPW%ap:powerOnMessageState%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[RSPW?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="powerOnMessageState" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a power-on message setting for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<!-- TODO: Add Select Input... Need dynamic menu like Niles Audio -->
+			<action indigoId="changeAVMode">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[AVMD%ap:avMode%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[AVMD?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="avMode" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select an A/V mode for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="changeViewMode">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[WIDE%ap:viewMode%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[WIDE?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="viewMode" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a view mode for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="setVolumeLevel">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[eval:"VOLM" + "%ap:volumeLevel%".rjust(2,"0") + "  "]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[VOLM??  ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="volumeLevel" paramType="ParamTypeInteger" isRequired="True">
+						<minValue>0</minValue>
+						<maxValue>60</maxValue>
+						<invalidValueMessage><![CDATA[Please enter a new volume (0-60) for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="setMuteStatus">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[MUTE%ap:muteState%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[MUTE?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="muteState" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a new mute state for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="setSurroundSoundMode">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[ACSU%ap:surroundSoundMode%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[ACSU?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="surroundSoundMode" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a new surround sound mode for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="setSleepTimer">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[OFTM%ap:sleepTimerSetting%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[OFTM?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="sleepTimerSetting" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a new sleep timer setting for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="setClosedCaptioning">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[CLCP%ap:ccState%   ]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[CLCP?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="ccState" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a new close captioning state for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="selectInput">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[%ap:tvInput%]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[IAVD?   ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="tvInput" paramType="ParamTypeString" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select a new input for the TV]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="tuneToAnalogChannel">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[eval:"DCCH" + "%ap:channelNumber%".rjust(3,"0") + " "]]></commandFormat>
+					</command>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[DCCH??? ]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="channelNumber" paramType="ParamTypeInteger" isRequired="True">
+						<minValue>1</minValue>
+						<maxValue>135</maxValue>
+						<invalidValueMessage><![CDATA[Please enter a new analog channel number between 1 and 135]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="addDigitToChannelSelector">
+				<commands>
+					<command>
+						<commandName>UPDATEDEVICESTATE</commandName>
+						<commandFormat><![CDATA[{ds:channelSelector}{eval:"%ds:channelSelector%" + "%ap:digitToAdd%"}]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="digitToAdd" paramType="ParamTypeString" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select the digit to add to the channel selector]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			<action indigoId="remoteDigitFromChannelSelector">
+				<commands>
+					<command>
+						<commandName>UPDATEDEVICESTATE</commandName>
+						<commandFormat><![CDATA[{ds:channelSelector}{eval:"%ds:channelSelector%"[:-1]}]]></commandFormat>
+					</command>
+				</commands>
+			</action>
+			<action indigoId="clearChannelSelector">
+				<commands>
+					<command>
+						<commandName>UPDATEDEVICESTATE</commandName>
+						<commandFormat><![CDATA[{ds:channelSelector}{eval:""}]]></commandFormat>
+					</command>
+				</commands>
+			</action>
+			<action indigoId="tuneToChannelSelector">
+				<commands>
+					<command>
+						<commandName>createTuneCommands</commandName>
+						<commandFormat><![CDATA[%ds:channelSelector%]]></commandFormat>
+					</command>
+					<command>
+						<commandName>UPDATEDEVICESTATE</commandName>
+						<commandFormat><![CDATA[{ds:channelSelector}{eval:""}]]></commandFormat>
+					</command>
+				</commands>
+			</action>
+			<action indigoId="sendRemoteKey">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat><![CDATA[eval:"RCKY" + "%ap:keyToSend%".rjust(2,"0") + "  "]]></commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="keyToSend" paramType="ParamTypeInteger" isRequired="True">
+						<invalidValueMessage><![CDATA[Please select the remote key to send]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+			
+			<!-- ARBITRARY COMMAND PROCESSING -->
+			<action indigoId="sendArbitraryCommand">
+				<commands>
+					<command>
+						<commandName>writeToTelnetConn</commandName>
+						<commandFormat>%ap:commandCode%</commandFormat>
+					</command>
+				</commands>
+				<params>
+					<param indigoId="commandCode" paramType="ParamTypeString" isRequired="True">
+						<invalidValueMessage><![CDATA[Please enter a command to send]]></invalidValueMessage>
+					</param>
+				</params>
+			</action>
+		</actions>
+	</pluginConfig>
+</RPFrameworkConfig>
