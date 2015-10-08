@@ -61,7 +61,7 @@ class Plugin(RPFramework.RPFrameworkPlugin.RPFrameworkPlugin):
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
 		# RP framework base class's init method
-		super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs, "http://www.duncanware.com/Downloads/IndigoHomeAutomation/Plugins/SharpTvNetworkRemote/SharpTvNetworkRemoteVersionInfo.html", managedDeviceClassModule=sharpTvNetworkRemoteDevice)
+		super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs, u'http://www.duncanware.com/Downloads/IndigoHomeAutomation/Plugins/SharpTvNetworkRemote/SharpTvNetworkRemoteVersionInfo.html', managedDeviceClassModule=sharpTvNetworkRemoteDevice)
 	
 	
 	#/////////////////////////////////////////////////////////////////////////////////////
@@ -75,21 +75,21 @@ class Plugin(RPFramework.RPFrameworkPlugin.RPFrameworkPlugin):
 		# this callback method must also do the validation... check to ensure that
 		# at least one TV has been selected from the list
 		errorsDict = indigo.Dict()
-		tvList = valuesDict.get("targetTVs")
+		tvList = valuesDict.get(u'targetTVs')
 		
 		if len(tvList) == 0:
-			errorsDict["targetTVs"] = "Please select the TV(s) desired"
+			errorsDict[u'targetTVs'] = u'Please select the TV(s) desired'
 			return (False, valuesDict, errorsDict)
 		else:
 			# log the fact that we are starting this command...
-			self.logDebugMessage("Executing Enable Power On Commands...", RPFramework.RPFrameworkPlugin.DEBUGLEVEL_LOW)
+			self.logDebugMessage(u'Executing Enable Power On Commands...', RPFramework.RPFrameworkPlugin.DEBUGLEVEL_LOW)
 			
 			# queue up the command for each selected device... this may be done via the
 			# execute action method
 			paramValues = indigo.Dict()
-			paramValues["powerOnMessageState"] = "2"
+			paramValues[u'powerOnMessageState'] = u'2'
 			for tvDevice in tvList:
-				self.executeAction(None, "changeTVPowerOnMessages", int(tvDevice), paramValues)
+				self.executeAction(None, u'changeTVPowerOnMessages', int(tvDevice), paramValues)
 			return (True, valuesDict, indigo.Dict())
 			
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-	
@@ -98,22 +98,22 @@ class Plugin(RPFramework.RPFrameworkPlugin.RPFrameworkPlugin):
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-	
 	def sendArbitraryCommand(self, valuesDict, typeId):
 		try:
-			deviceId = valuesDict.get("targetDevice", "0")
-			commandCode = valuesDict.get("commandToSend", "")
+			deviceId = valuesDict.get(u'targetDevice', u'0')
+			commandCode = valuesDict.get(u'commandToSend', u'')
 			
-			if deviceId == "" or deviceId == "0":
+			if deviceId == u'' or deviceId == u'0':
 				# no device was selected
 				errorDict = indigo.Dict()
-				errorDict["targetDevice"] = "Please select a device"
+				errorDict["targetDevice"] = u'Please select a device'
 				return (False, valuesDict, errorDict)
-			elif commandCode == "":
+			elif commandCode == u'':
 				errorDict = indigo.Dict()
-				errorDict["commandToSend"] = "Enter command to send"
+				errorDict[u'commandToSend'] = u'Enter command to send'
 				return (False, valuesDict, errorDict)
 			else:
 				actionParams = indigo.Dict()
-				actionParams["commandCode"] = commandCode.ljust(8, ' ')
-				self.executeAction(pluginAction=None, indigoActionId="sendArbitraryCommand", indigoDeviceId=int(deviceId), paramValues=actionParams)
+				actionParams[u'commandCode'] = commandCode.ljust(8, ' ')
+				self.executeAction(pluginAction=None, indigoActionId=u'sendArbitraryCommand', indigoDeviceId=int(deviceId), paramValues=actionParams)
 				return (True, valuesDict)
 		except:
 			self.exceptionLog()

@@ -54,18 +54,18 @@ class SharpTvNetworkRemoteDevice(RPFramework.RPFrameworkTelnetDevice.RPFramework
 	# other ConfigUI based) routine
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	def getConfigDialogMenuItems(self, filter, valuesDict, typeId, targetId):
-		self.hostPlugin.logDebugMessage("SharpTV device received request for source list menu items", RPFramework.RPFrameworkPlugin.DEBUGLEVEL_MED)
+		self.hostPlugin.logDebugMessage(u'SharpTV device received request for source list menu items', RPFramework.RPFrameworkPlugin.DEBUGLEVEL_MED)
 		availableInputs = []
-		availableInputs.append(("RCKY36  ", "Toggle Input"))
+		availableInputs.append((u'RCKY36  ', u'Toggle Input'))
 		
-		tvTunerLabel = self.indigoDevice.pluginProps.get("input0Label", "")
-		if tvTunerLabel != "":
-			availableInputs.append(("ITVD0   ", tvTunerLabel))
+		tvTunerLabel = self.indigoDevice.pluginProps.get(u'input0Label', u'')
+		if tvTunerLabel != u'':
+			availableInputs.append((u'ITVD0   ', tvTunerLabel))
 		
 		for i in range(1,9):
-			labelName = self.indigoDevice.pluginProps.get("input" + str(i) + "Label", "")
-			if labelName != "":
-				availableInputs.append(("IAVD" + str(i) + "   ", labelName))
+			labelName = self.indigoDevice.pluginProps.get(u'input' + RPFramework.RPFrameworkUtils.to_unicode(i) + u'Label', u'')
+			if labelName != u'':
+				availableInputs.append((u'IAVD' + RPFramework.RPFrameworkUtils.to_unicode(i) + u'   ', labelName))
 		return availableInputs
 		
 		
@@ -77,29 +77,29 @@ class SharpTvNetworkRemoteDevice(RPFramework.RPFrameworkTelnetDevice.RPFramework
 	# base class; it will be called on a concurrent thread
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	def handleUnmanagedCommandInQueue(self, ipConnection, rpCommand):
-		if rpCommand.commandName == "createTuneCommands":
+		if rpCommand.commandName == u'createTuneCommands':
 			# this command payload will be the channel - either an analog of digital
 			# channel so we must parse that out
 			try:
 				fltChannel = float(rpCommand.commandPayload)
 			except:
 				# this means an invalid tune command was received
-				indigo.server.log("Ignored tune command to empty or invalid channel number")
+				indigo.server.log(u'Ignored tune command to empty or invalid channel number')
 				return
 				
 			if fltChannel <= 135:
 				# this is an analog tune command...
 				analogValuesDict = indigo.Dict()
-				analogValuesDict['channelNumber'] = rpCommand.commandPayload
-				self.hostPlugin.executeAction(None, 'tuneToAnalogChannel', self.indigoDevice.id, analogValuesDict)
+				analogValuesDict[u'channelNumber'] = rpCommand.commandPayload
+				self.hostPlugin.executeAction(None, u'tuneToAnalogChannel', self.indigoDevice.id, analogValuesDict)
 			else:
-				indigo.server.log("Digital channel tune not yet supported", isError=False)
+				indigo.server.log(u'Digital channel tune not yet supported', isError=False)
 		
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	# This routine should return a touple of information about the connection - in the
 	# format of (ipAddress/HostName, portNumber)
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	def getDeviceAddressInfo(self):
-		return (self.indigoDevice.pluginProps.get("ipAddress", ""), int(self.indigoDevice.pluginProps.get("portNumber", "10002")))
+		return (self.indigoDevice.pluginProps.get(u'ipAddress', u''), int(self.indigoDevice.pluginProps.get(u'portNumber', u'10002')))
 		
 		

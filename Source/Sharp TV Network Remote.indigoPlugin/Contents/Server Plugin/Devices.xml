@@ -19,7 +19,7 @@
 				<Label>Status Update Interval (sec):</Label>
 			</Field>
 			<Field id="updateIntervalInstructions" type="label" fontSize="small" alignWithControl="true">
-				<Label>This interval, specified in seconds, determines how often the plugin attempts to read the status of all states of the television; this is used to update the plugin whenever a manual change has occurred (such as a change by the physical TV remote or buttons). Setting to 0 will disable status update polling.</Label>
+				<Label>This interval, specified in seconds, determines how often the plugin attempts to read the status of all states of the television; this is used to update the plugin whenever a manual change has occurred (such as a change by the physical TV remote or buttons). Setting to 0 will disable polling, -1 will turn off all status updates completely.</Label>
 			</Field>
 			<Field type="label" id="securitySpacer" fontSize="small">
 				<Label></Label>
