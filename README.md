@@ -31,6 +31,7 @@ Each television that you wish to control should be created as an Indigo Device; 
 
 #Enabling POWER ON Commands - *Important Requirement*
 By default the television will be setup to only accept remote control of the television when the television is powered on (turning the power off will drop connection to the plugin). The plugin, however, is able to configure the TV to listen for Power On messages whenever it is in standby mode (obviously while in standby mode other commands are useless/ignored). To enable this feature go through the Indigo menus to Plugins->Sharp TV Network Remote Plugin->Setup TV for Network-On; select your TV device(s) and click the Run button.
+
 ![](<Documentation and Information/Help Images/SharpTvNetworkOnSetup.png>)
 
 #Available Actions
