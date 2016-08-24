@@ -23,16 +23,16 @@ The latest released version of the plugin is available for download [here](http:
 
 ###Configuring the Plugin
 Upon first installation you will be asked to configure the plugin; please see the instructions on the configuration screen for more information. Most users will be fine with the defaults unless an email is desired when a new version is released.
-![](<Documentation and Information/Help Images/SharpTvPluginConfig.png>)
+![](<Documentation/Doc-Images/SharpTvPluginConfig.png>)
 
 #Plugin Devices
 Each television that you wish to control should be created as an Indigo Device; In the Device Settings you will need to enter the television's IP address and network port setup for the AQUOS remote as obtained when setting up the television (see "Enabling Network Control of the Television" above). Note that if you ever lose connection with your television, you may need to return here to enter the IP Address again if it has picked up a new address on the network.
-![](<Documentation and Information/Help Images/SharpTvDeviceConfig.png>)
+![](<Documentation/Doc-Images/SharpTvDeviceConfig.png>)
 
 #Enabling POWER ON Commands - *Important Requirement*
 By default the television will be setup to only accept remote control of the television when the television is powered on (turning the power off will drop connection to the plugin). The plugin, however, is able to configure the TV to listen for Power On messages whenever it is in standby mode (obviously while in standby mode other commands are useless/ignored). To enable this feature go through the Indigo menus to Plugins->Sharp TV Network Remote Plugin->Setup TV for Network-On; select your TV device(s) and click the Run button.
 
-![](<Documentation and Information/Help Images/SharpTvNetworkOnSetup.png>)
+![](<Documentation/Doc-Images/SharpTvNetworkOnSetup.png>)
 
 #Available Actions
 ###Toggle/Set TV Power
