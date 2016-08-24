@@ -4,8 +4,8 @@ This Indigo 6.0+ plugin allows Indigo to control Sharp AQUOS televisions via the
 #Hardware Requirements
 This plugin should work with any network-connected Sharp AQUOS television which supports IP control via ethernet or WiFi (it does not handle RS232 connections to the television); generally speaking if your television is supported by the official Sharp TV Remote (mobile) application then this plugin is able to control the hardware. The plugin has been tested with the following hardware:
 
--LC-XXLE650U Series (XX specifies the diagonal size for individual models)
--LC-60C6500U (Costo/Sam's version of above)
+-LC-XXLE650U Series (XX specifies the diagonal size for individual models)<br/>
+-LC-60C6500U (Costo/Sam's version of above)<br />
 -PRO-70X5FD (Elite series)
 
 If you have tested it successfully (or unsuccessfully) with other models and feel inclined to share, please let me know and I will update this list. Note that some televisions may not support all features provided by the plugin (e.g. have fewer HDMI inputs) in which case the unsupported commands will be ignored by the television and "do nothing".
