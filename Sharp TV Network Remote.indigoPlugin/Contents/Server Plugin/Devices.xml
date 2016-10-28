@@ -79,7 +79,7 @@
 				<Label/>
 			</Field>
 		</ConfigUI>
-		<UiDisplayStateId>connectionState</UiDisplayStateId>
+		<UiDisplayStateId>powerState</UiDisplayStateId>
 		<States>
 			<State id="avMode">
 				<ValueType>

@@ -54,7 +54,7 @@ class SharpTvNetworkRemoteDevice(RPFramework.RPFrameworkTelnetDevice.RPFramework
 	# other ConfigUI based) routine
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	def getConfigDialogMenuItems(self, filter, valuesDict, typeId, targetId):
-		self.hostPlugin.logDebugMessage(u'SharpTV device received request for source list menu items', RPFramework.RPFrameworkPlugin.DEBUGLEVEL_MED)
+		self.hostPlugin.logger.debug(u'SharpTV device received request for source list menu items')
 		availableInputs = []
 		availableInputs.append((u'RCKY36  ', u'Toggle Input'))
 		
@@ -84,7 +84,7 @@ class SharpTvNetworkRemoteDevice(RPFramework.RPFrameworkTelnetDevice.RPFramework
 				fltChannel = float(rpCommand.commandPayload)
 			except:
 				# this means an invalid tune command was received
-				indigo.server.log(u'Ignored tune command to empty or invalid channel number')
+				self.hostPlugin.logger.warning(u'Ignored tune command to empty or invalid channel number')
 				return
 				
 			if fltChannel <= 135:
@@ -93,7 +93,7 @@ class SharpTvNetworkRemoteDevice(RPFramework.RPFrameworkTelnetDevice.RPFramework
 				analogValuesDict[u'channelNumber'] = rpCommand.commandPayload
 				self.hostPlugin.executeAction(None, u'tuneToAnalogChannel', self.indigoDevice.id, analogValuesDict)
 			else:
-				indigo.server.log(u'Digital channel tune not yet supported', isError=False)
+				self.hostPlugin.logger.warning(u'Digital channel tune not yet supported')
 		
 	#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	# This routine should return a touple of information about the connection - in the

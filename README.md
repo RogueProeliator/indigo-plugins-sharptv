@@ -1,6 +1,8 @@
 #Introduction
 This Indigo 6.0+ plugin allows Indigo to control Sharp AQUOS televisions via their network (IP) control protocol. Sharp's protocol is very robust and, as a result, this plugin is able to both read and set nearly every aspect of the television - from volume/channel through configurations such as picture mode, aspect ratio, etc.
 
+_**INDIGO 6 IMPORTANT NOTE:**_ The Indigo 6 version of this plugin is end-of-life with respect to new development, however the latest stable version on Indigo 6 is [still available](https://github.com/RogueProeliator/IndigoPlugins-Sharp-TV-Network-Remote/releases/tag/v1.5.0) on the releases page and is working as expected at the moment. Please consider an upgrade to Indigo 7 to support further development of our favorite HA platform!
+
 #Hardware Requirements
 This plugin should work with any network-connected Sharp AQUOS television which supports IP control via ethernet or WiFi (it does not handle RS232 connections to the television); generally speaking if your television is supported by the official Sharp TV Remote (mobile) application then this plugin is able to control the hardware. The plugin has been tested with the following hardware:
 

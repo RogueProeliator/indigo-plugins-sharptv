@@ -82,7 +82,7 @@ class Plugin(RPFramework.RPFrameworkPlugin.RPFrameworkPlugin):
 			return (False, valuesDict, errorsDict)
 		else:
 			# log the fact that we are starting this command...
-			self.logDebugMessage(u'Executing Enable Power On Commands...', RPFramework.RPFrameworkPlugin.DEBUGLEVEL_LOW)
+			self.logger.info(u'Executing Enable Power On Commands...')
 			
 			# queue up the command for each selected device... this may be done via the
 			# execute action method

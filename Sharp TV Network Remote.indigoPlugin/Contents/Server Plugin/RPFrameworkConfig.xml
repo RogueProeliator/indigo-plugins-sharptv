@@ -164,7 +164,8 @@
 							<effect effectType="RESPONSE_EFFECT_UPDATESTATE" evalResult="true">
 								<updateParam>powerState</updateParam>
 								<updateValueFormat>"%cp:response%" == "1"</updateValueFormat>
-							</effect>
+								<updateValueExFormat>"On" if "%cp:response%" == "1" else "Off"</updateValueExFormat>
+							</effect>							
 						</effects>
 					</response>
 					<response id="powerOnMessagesEnabledStatusQuery" respondToActionId="">
