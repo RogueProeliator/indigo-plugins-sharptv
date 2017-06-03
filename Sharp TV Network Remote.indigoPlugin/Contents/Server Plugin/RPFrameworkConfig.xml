@@ -27,6 +27,7 @@
 					</param>
 				</params>
 				<guiConfiguration>
+					<deviceIsChildDevice>False</deviceIsChildDevice>
 					<deviceAddressFormat><![CDATA[%ap:ipAddress%:%ap:portNumber%]]></deviceAddressFormat>
 					<telnetConnectionDeviceStateName>connectionState</telnetConnectionDeviceStateName>
 					<telnetConnectionDeviceStateBoolean>isConnected</telnetConnectionDeviceStateBoolean>
@@ -47,7 +48,7 @@
 					</response>
 					<response id="passwordPrompt" respondToActionId="">
 						<criteriaFormatString><![CDATA[%cp:response%]]></criteriaFormatString>
-						<matchExpression><![CDATA[^Password:\s*$]]></matchExpression>
+						<matchExpression><![CDATA[^\s*Password:\s*$]]></matchExpression>
 						<effects>
 							<effect effectType="RESPONSE_EFFECT_QUEUECOMMAND" evalResult="false">
 								<updateParam>writeToTelnetConn</updateParam>
