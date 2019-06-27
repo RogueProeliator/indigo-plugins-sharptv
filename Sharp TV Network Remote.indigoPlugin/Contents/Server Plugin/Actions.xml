@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Actions>
-	<Action id="toggleTVPower" deviceFilter="self">
+	<Action id="toggleTVPower" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Toggle TV Power</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="setTVPower" deviceFilter="self">
+	<Action id="setTVPower" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set TV Power</Name>
 		<ConfigUI>
 			<Field type="menu" id="powerState">
@@ -18,7 +18,7 @@
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
 	<Action id="sep01" />
-	<Action id="setVolumeLevel" deviceFilter="self">
+	<Action id="setVolumeLevel" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Volume Level</Name>
 		<ConfigUI>
 			<Field type="textfield" id="volumeLevel">
@@ -27,7 +27,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="setMuteStatus" deviceFilter="self">
+	<Action id="setMuteStatus" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Mute State</Name>
 		<ConfigUI>
 			<Field type="menu" id="muteState">
@@ -41,7 +41,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="setClosedCaptioning" deviceFilter="self">
+	<Action id="setClosedCaptioning" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Closed Captioning</Name>
 		<ConfigUI>
 			<Field type="menu" id="ccState">
@@ -56,7 +56,7 @@
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
 	<Action id="sep02" />
-	<Action id="selectInput" deviceFilter="self">
+	<Action id="selectInput" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Select TV Input</Name>
 		<ConfigUI>
 			<Field type="menu" id="tvInput">
@@ -66,7 +66,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="tuneToAnalogChannel" deviceFilter="self">
+	<Action id="tuneToAnalogChannel" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Tune to Analog Channel</Name>
 		<ConfigUI>
 			<Field type="textfield" id="channelNumber">
@@ -75,7 +75,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="addDigitToChannelSelector" deviceFilter="self">
+	<Action id="addDigitToChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Add a digit to the channel selector</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 		<ConfigUI>
@@ -100,20 +100,20 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="remoteDigitFromChannelSelector" deviceFilter="self">
+	<Action id="remoteDigitFromChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Remove the last digit from channel selector</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="clearChannelSelector" deviceFilter="self">
+	<Action id="clearChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Clear the channel selector</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="tuneToChannelSelector" deviceFilter="self">
+	<Action id="tuneToChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Tune the TV to the channel selector's value</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
 	<Action id="sep03" />
-	<Action id="changeAVMode" deviceFilter="self">
+	<Action id="changeAVMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Picture Mode</Name>
 		<ConfigUI>
 			<Field type="menu" id="avMode">
@@ -137,7 +137,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="changeViewMode" deviceFilter="self">
+	<Action id="changeViewMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Aspect Correction Mode</Name>
 		<ConfigUI>
 			<Field type="menu" id="viewMode">
@@ -160,7 +160,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="setSurroundSoundMode" deviceFilter="self">
+	<Action id="setSurroundSoundMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Surround Sound Mode</Name>
 		<ConfigUI>
 			<Field type="menu" id="surroundSoundMode">
@@ -177,7 +177,7 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="setSleepTimer" deviceFilter="self">
+	<Action id="setSleepTimer" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Sleep Timer</Name>
 		<ConfigUI>
 			<Field type="menu" id="sleepTimerSetting">
@@ -194,7 +194,7 @@
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
 	<Action id="sep04" />
-	<Action id="sendRemoteKey" deviceFilter="self">
+	<Action id="sendRemoteKey" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Send Remote Key</Name>
 		<ConfigUI>
 			<Field type="menu" id="keyToSend">
@@ -263,7 +263,7 @@
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
 	<Action id="sep05" />
-	<Action id="changeTVPowerOnMessages" deviceFilter="self">
+	<Action id="changeTVPowerOnMessages" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Power On Messages Enabled</Name>
 		<ConfigUI>
 			<Field type="menu" id="powerOnMessageState">

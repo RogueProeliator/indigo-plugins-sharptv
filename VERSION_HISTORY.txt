@@ -6,6 +6,10 @@ To update to the latest version of the application, please download the latest r
 =================================
 VERSION HISTORY
 =================================
+Version 2.1.0 [June 2019]:
+* Brought plugin up to Indigo 7.1+ standards
+* Updated version check to avoid duplicate calls
+
 Version 2.0.1 [June 2017]:
 * Updated login/password prompt check to account for differing TV command patterns
 * Cut down on unnecessary logging in Full logging mode
