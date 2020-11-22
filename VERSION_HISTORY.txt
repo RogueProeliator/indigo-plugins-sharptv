@@ -6,6 +6,9 @@ To update to the latest version of the application, please download the latest r
 =================================
 VERSION HISTORY
 =================================
+Version 2.2.0 [November 2020]:
+* Added additional remote commands to the Send Remote Key action
+
 Version 2.1.1 [November 2020]:
 * Updated to Indigo 7.3+ standards
 * Unified plugin UI across all RogueProeliator plugins

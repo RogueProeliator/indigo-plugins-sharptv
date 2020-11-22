@@ -9,14 +9,10 @@
 #	Command structure based on Sharp's documentation, internet resources and discovered
 #	(unpublished) commands.
 #
-#	Version 1.0:
-#		* Initial release of the plugin to Indigo users
-#	Version 1.2.8 [5/2014]:
-#		* Added auto-reconnect to connection failures or timeouts
-#		* Caught exception trying to tune selector when no channel was entered
-#	Version 1.3.14:
-#		* Added ability to send arbitrary command
-#		* Upgraded framework which included additional features
+#	This plugin is released under an MIT license - this is a very simple and permissive
+#	license and may be found in the LICENSE.txt file found in the root of this plugin's
+#	GitHub repository:
+#		https://github.com/RogueProeliator/IndigoPlugins-Sharp-TV-Network-Remote
 #
 #/////////////////////////////////////////////////////////////////////////////////////////
 #/////////////////////////////////////////////////////////////////////////////////////////

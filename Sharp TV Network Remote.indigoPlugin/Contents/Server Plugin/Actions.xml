@@ -216,6 +216,7 @@
 					<Option value="28">AV (Picture) Mode</Option>
 					<Option value="51">B (Green)</Option>
 					<Option value="19">Back</Option>
+					<Option value="52">Blue</Option>
 					<Option value="52">C (Blue)</Option>
 					<Option value="27">CC</Option>
 					<Option value="35">Channel -</Option>
@@ -237,7 +238,9 @@
 					<Option value="30">Flashback</Option>
 					<Option value="54">Freeze</Option>
 					<Option value="21">Forward</Option>
+					<Option value="51">Green</Option>
 					<Option value="36">Input</Option>
+					<Option value="61">Manual</Option>
 					<Option value="38">Menu</Option>
 					<Option value="31">Mute</Option>
 					<Option value="59">Netflix</Option>
@@ -247,6 +250,8 @@
 					<Option value="12">Power</Option>
 					<Option value="14">Power (Source)</Option>
 					<Option value="22">Record</Option>
+					<Option value="25">Record Stop</Option>
+					<Option value="50">Red</Option>
 					<Option value="45">Return</Option>
 					<Option value="15">Rewind</Option>
 					<Option value="24">Sleep</Option>
@@ -255,7 +260,8 @@
 					<Option value="29">View Mode</Option>
 					<Option value="32">Volume -</Option>
 					<Option value="33">Volume +</Option>
-					<Option value="58">3D</Option>
+					<Option value="53">Yellow</Option>
+					<Option value="58">2D-3D</Option>
 					<Option value="48">3D Surround</Option>
 				</List>
 			</Field>
