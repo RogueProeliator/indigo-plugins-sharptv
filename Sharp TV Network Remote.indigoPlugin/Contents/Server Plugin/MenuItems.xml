@@ -42,6 +42,7 @@
 			</Field>
 		</ConfigUI>
 	</MenuItem>
+
     <MenuItem id="deviceCmdsSeparator" />
     <MenuItem id="toggleDebug">
 		<Name>Toggle Debugging On/Off</Name>
@@ -65,6 +66,7 @@
 			</Field>
 		</ConfigUI>
 	</MenuItem>
+	
 	<MenuItem id="updateSectionSeparator" />
 	<MenuItem id="viewLicense">
 		<Name>View License...</Name>

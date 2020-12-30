@@ -6,6 +6,9 @@ To update to the latest version of the application, please download the latest r
 =================================
 VERSION HISTORY
 =================================
+Version 2.2.1 [January 2021]:
+* Minor UI consistency/clarity enhancements
+
 Version 2.2.0 [November 2020]:
 * Added additional remote commands to the Send Remote Key action
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PluginConfig>
-	<Field id="pluginTitleLabel" type="label" fontSize="large">
+	<Field id="pluginTitleLabel" type="label">
 		<Label>Sharp TV Network Remote</Label>
 	</Field>
 	<Field id="pluginAuthorLabel" type="label" fontSize="small">

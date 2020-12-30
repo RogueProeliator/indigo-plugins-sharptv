@@ -24,6 +24,7 @@
 			<Field type="label" id="securitySpacer" fontSize="small">
 				<Label></Label>
 			</Field>
+
 			<Field id="securityTitle" type="label" fontColor="darkGray">
 				<Label>SECURITY OPTIONS</Label>
 			</Field>
@@ -41,6 +42,7 @@
 			<Field type="label" id="sourceSeparator" fontSize="small">
 				<Label></Label>
 			</Field>
+			
 			<Field id="sourceTitle" type="label" fontColor="darkGray">
 				<Label>SOURCE DEFINITIONS</Label>
 			</Field>

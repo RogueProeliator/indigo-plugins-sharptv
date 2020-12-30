@@ -55,7 +55,8 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="sep02" />
+
+	<Action id="sep02" uiPath="DeviceActions" />
 	<Action id="selectInput" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Select TV Input</Name>
 		<ConfigUI>
@@ -112,7 +113,8 @@
 		<Name>Tune the TV to the channel selector's value</Name>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="sep03" />
+
+	<Action id="sep03" uiPath="DeviceActions" />
 	<Action id="changeAVMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Picture Mode</Name>
 		<ConfigUI>
@@ -193,7 +195,8 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="sep04" />
+
+	<Action id="sep04" uiPath="DeviceActions" />
 	<Action id="sendRemoteKey" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Send Remote Key</Name>
 		<ConfigUI>
@@ -268,7 +271,8 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="sep05" />
+
+	<Action id="sep05" uiPath="DeviceActions" />
 	<Action id="changeTVPowerOnMessages" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Power On Messages Enabled</Name>
 		<ConfigUI>
