@@ -17,7 +17,8 @@
 		</ConfigUI>
 		<CallbackMethod>executeAction</CallbackMethod>
 	</Action>
-	<Action id="sep01" />
+
+	<Action id="sep01" uiPath="DeviceActions" />
 	<Action id="setVolumeLevel" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Volume Level</Name>
 		<ConfigUI>

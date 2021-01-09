@@ -6,6 +6,9 @@ To update to the latest version of the application, please download the latest r
 =================================
 VERSION HISTORY
 =================================
+Version 2.2.2 [January 2021]:
+* Fixed minor UI issue causing actions to appear at top level instead of under Device Actions
+
 Version 2.2.1 [January 2021]:
 * Minor UI consistency/clarity enhancements
 
