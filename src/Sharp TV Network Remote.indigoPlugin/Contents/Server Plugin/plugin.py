@@ -33,7 +33,7 @@ class Plugin(RPFrameworkPlugin):
 	# This method will be called whenever the user has clicked the menus in order to
 	# enable the power-on setting for TV(s)
 	# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	def enablePowerOnCommands(self, valuesDict, typeId):
+	def enable_power_on_commands(self, valuesDict, typeId):
 		# this callback method must also do the validation... check to ensure that
 		# at least one TV has been selected from the list
 		errors_dict = indigo.Dict()
@@ -58,7 +58,7 @@ class Plugin(RPFrameworkPlugin):
 	# This routine will be called from the user executing the menu item action to send
 	# an arbitrary command code to the Onkyo receiver
 	# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	def sendArbitraryCommand(self, valuesDict, typeId):
+	def send_arbitrary_command(self, valuesDict, typeId):
 		try:
 			device_id = valuesDict.get("targetDevice", "0")
 			command_code = valuesDict.get("commandToSend", "")

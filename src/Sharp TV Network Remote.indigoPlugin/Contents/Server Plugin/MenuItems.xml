@@ -2,7 +2,7 @@
 <MenuItems>
     <MenuItem id="setupPowerOnCommands">
         <Name>Setup TV for Network-On</Name>
-        <CallbackMethod>enablePowerOnCommands</CallbackMethod>
+        <CallbackMethod>enable_power_on_commands</CallbackMethod>
         <ButtonTitle>Run</ButtonTitle>
         <ConfigUI>
 			<Field id="instructions" type="label" fontSize="small">
@@ -20,7 +20,7 @@
     </MenuItem>
     <MenuItem id="sendNonDocumentedCommand">
 		<Name>Send Arbitrary Command</Name>
-		<CallbackMethod>sendArbitraryCommand</CallbackMethod>
+		<CallbackMethod>send_arbitrary_command</CallbackMethod>
 		<ButtonTitle>Send</ButtonTitle>
 		<ConfigUI>
 			<Field id="sendArbitraryCommandTitle" type="label" fontColor="darkGray">
@@ -46,11 +46,11 @@
     <MenuItem id="deviceCmdsSeparator" />
     <MenuItem id="toggleDebug">
 		<Name>Toggle Debugging On/Off</Name>
-		<CallbackMethod>toggleDebugEnabled</CallbackMethod>
+		<CallbackMethod>toggle_debug_enabled</CallbackMethod>
 	</MenuItem>
 	<MenuItem id="debugDumpDeviceDetails">
 		<Name>Log Device Details</Name>
-		<CallbackMethod>dumpDeviceDetailsToLog</CallbackMethod>
+		<CallbackMethod>dump_device_details_to_log</CallbackMethod>
 		<ButtonTitle>Output</ButtonTitle>
 		<ConfigUI>
 			<Field id="dumpDeviceDetailsToLog_Title" type="label" fontColor="darkGray">

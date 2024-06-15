@@ -2,7 +2,7 @@
 <Actions>
 	<Action id="toggleTVPower" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Toggle TV Power</Name>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="setTVPower" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set TV Power</Name>
@@ -15,7 +15,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 
 	<Action id="sep01" uiPath="DeviceActions" />
@@ -26,7 +26,7 @@
 				<Label>Volume Level:</Label>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="setMuteStatus" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Mute State</Name>
@@ -40,7 +40,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="setClosedCaptioning" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Closed Captioning</Name>
@@ -54,7 +54,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 
 	<Action id="sep02" uiPath="DeviceActions" />
@@ -66,7 +66,7 @@
 				<List class="self" filter="" method="getConfigDialogMenu" />
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="tuneToAnalogChannel" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Tune to Analog Channel</Name>
@@ -75,11 +75,11 @@
 				<Label>Channel (1-135):</Label>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="addDigitToChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Add a digit to the channel selector</Name>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 		<ConfigUI>
 			<Field type="label" id="instructions" fontSize="small">
 				<Label>Adds a digit to the channel selector to aid in creating control page keypads with which you can change the channel.</Label>
@@ -104,15 +104,15 @@
 	</Action>
 	<Action id="remoteDigitFromChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Remove the last digit from channel selector</Name>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="clearChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Clear the channel selector</Name>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="tuneToChannelSelector" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Tune the TV to the channel selector's value</Name>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 
 	<Action id="sep03" uiPath="DeviceActions" />
@@ -138,7 +138,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="changeViewMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Aspect Correction Mode</Name>
@@ -161,7 +161,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="setSurroundSoundMode" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Surround Sound Mode</Name>
@@ -178,7 +178,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 	<Action id="setSleepTimer" uiPath="DeviceActions" deviceFilter="self">
 		<Name>Set Sleep Timer</Name>
@@ -194,7 +194,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 
 	<Action id="sep04" uiPath="DeviceActions" />
@@ -270,7 +270,7 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 
 	<Action id="sep05" uiPath="DeviceActions" />
@@ -285,6 +285,6 @@
 				</List>
 			</Field>
 		</ConfigUI>
-		<CallbackMethod>executeAction</CallbackMethod>
+		<CallbackMethod>execute_action</CallbackMethod>
 	</Action>
 </Actions>
