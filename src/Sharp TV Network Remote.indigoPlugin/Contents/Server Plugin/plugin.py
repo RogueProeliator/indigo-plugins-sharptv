@@ -22,14 +22,6 @@
 # Python imports
 #/////////////////////////////////////////////////////////////////////////////////////////
 import indigo
-import random
-import re
-import select
-import socket
-import string
-import telnetlib
-import urllib
-import os
 
 import RPFramework
 import sharpTvNetworkRemoteDevice
